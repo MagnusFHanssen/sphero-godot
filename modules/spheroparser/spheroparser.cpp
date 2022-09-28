@@ -2,7 +2,7 @@
 
 bool SpheroParser::openFile(const String p_FileName)
 {
-    std::string fileName(p_FileNamec_str());
+    std::string fileName(p_FileName.c_str());
     m_FileIn.open(fileName);
     m_FileLoaded = m_FileIn.is_open();
     return m_FileLoaded;
