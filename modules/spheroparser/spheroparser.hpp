@@ -1,26 +1,20 @@
 #ifndef SPHEROPARSER_HPP
 #define SPHEROPARSER_HPP
 
-#include <string>
-#include <iostream>
 #include <fstream>
 
 #include "core/reference.h"
 #include "core/ustring.h"
-//#include "vector3.h"
+#include "core/math/vector3.h"
 
 class SpheroParser : public Reference
 {
     GDCLASS(SpheroParser, Reference);
 
-    String readLine();
-
-    bool m_FileLoaded;
-    double m_TimeCount;
     std::ifstream m_FileIn;
 
-    //Vector3 m_LastVec;
-    //Vector3 m_NewVec;
+    Vector3 m_LastVector;
+    float m_LastTime;
 
 protected:
     static void _bind_methods();
@@ -28,8 +22,12 @@ protected:
 public:
     SpheroParser() = default;
 
-    bool openFile(const String p_FileName);
+    void openFile(const String p_FileName);
+    void readLine();
+    bool isOpen();
 
+    Vector3 yieldVector();
+    float yiealTime();
 };
 
 #endif // SPHEROPARSER_HPP
